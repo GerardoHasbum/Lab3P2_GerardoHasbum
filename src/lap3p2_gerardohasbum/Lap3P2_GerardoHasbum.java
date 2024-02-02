@@ -35,13 +35,15 @@ static Random crit = new Random();
                     + "\n4. ELIMINAR POKEMON"
                     + "\n5. CAPTURAR POKEMON"
                     + "\n6. MODIFICAR POKEMON"
-                    + "\n7. SALIR");
+                    + "\n7. SALIR"
+                    + "\nIngrese su opcion: ");
             
             res_men = jhin.nextInt();
             
             if (res_men == 1) {//crear pokemon
-                
-                
+                Pokebola pokebola = new Pokebola("Morada", "P1", 3);
+                Pokemon pika = new Pokemon("Pikachu", 15, "Timido", false, pokebola);
+                System.out.println(pika.toString());
                 
             }//fin crear pokemon
             
