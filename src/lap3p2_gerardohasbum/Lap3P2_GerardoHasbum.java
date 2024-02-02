@@ -7,6 +7,7 @@ package lap3p2_gerardohasbum;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -23,7 +24,7 @@ public class Lap3P2_GerardoHasbum {
     public static void main(String[] args) {
 
         int res_men = 1;
-        ArrayList<Pokemon> pkmn = new ArrayList();
+        ArrayList pkmn = new ArrayList();
         ArrayList<Pokebola> pkbl = new ArrayList();
 
         while (res_men > 0 && res_men < 7) {//while menu
@@ -48,10 +49,11 @@ public class Lap3P2_GerardoHasbum {
                 boolean existe = false;
                 Pokemon temporal = new Pokemon();
                 for (int i = 0; i < pkmn.size(); i++) {//validacion de pokemon existente
-                    String temp = pkmn.get(i).getNombre();
+                    Pokemon tem = (Pokemon) pkmn.get(i);
+                    String temp = tem.getNombre();
                     if (temp.equals(nombre)) {
                         existe = true;
-                        temporal = pkmn.get(i);
+                        temporal = tem;
                     }
                 }
 
@@ -60,7 +62,8 @@ public class Lap3P2_GerardoHasbum {
                     int entrada = jhin.nextInt();
 
                     for (int i = 0; i < pkmn.size(); i++) {//validacion de indice en el pokedex
-                        while (pkmn.get(i).getEntrada() == entrada) {
+                        Pokemon tem = (Pokemon) pkmn.get(i);
+                        while (tem.getEntrada() == entrada) {
                             System.out.println("Ese indice ya esta tomado por otro pokemon porfavor eleigr otro: ");
                             entrada = jhin.nextInt();
                         }
@@ -134,7 +137,6 @@ public class Lap3P2_GerardoHasbum {
                     if (temporal instanceof Fire) {//si ya existe y es fuego
 
                         System.out.println("Ingrese la naturaleza del pokemon[Timido,Energetico,Misterioso]: ");//naturaleza del pokemon
-                        jhin.nextLine();
                         String naturaleza = jhin.nextLine();
                         naturaleza = naturaleza.toLowerCase();
                         while (!(naturaleza.equals("timido")) && !(naturaleza.equals("energetico")) && !(naturaleza.equals("misterioso"))) {//validacion de existencia de la naturaleza
@@ -178,7 +180,6 @@ public class Lap3P2_GerardoHasbum {
                     if (temporal instanceof Grass) {//si ya existe y es planta
 
                         System.out.println("Ingrese la naturaleza de este pokemon[Timido,Energetico,Misterioso]: ");//naturaleza del pokemon
-                        jhin.nextLine();
                         String naturaleza = jhin.nextLine();
                         naturaleza = naturaleza.toLowerCase();
                         while (!(naturaleza.equals("timido")) && !(naturaleza.equals("energetico")) && !(naturaleza.equals("misterioso"))) {
@@ -207,10 +208,45 @@ public class Lap3P2_GerardoHasbum {
 
             if (res_men == 2) {//crear pokebola
 
+                System.out.println("Ingrese el color de la pokebola: ");
+                jhin.nextLine();
+                String color = jhin.nextLine();
+
+                System.out.println("Ingrese el numero de serie: ");
+                String serie = jhin.nextLine();
+                boolean existe = false;
+                for (int i = 0; i < pkbl.size(); i++) {
+                    if (pkbl.get(i).getSerie().equals(serie)) {
+                        existe = true;
+                    }
+                }
+                while (existe == true) {
+                    System.out.println("Esa serie ya existe porfavor ingresar otra: ");
+                    serie = jhin.nextLine();
+                    for (int i = 0; i < pkbl.size(); i++) {
+                        existe = false;
+                        if (pkbl.get(i).getSerie().equals(serie)) {
+                            existe = true;
+                            continue;
+                        }
+                    }
+                }
+
+                System.out.println("Ingrese la eficiencia de la pokebola[1-3]: ");
+                int eficiencia = jhin.nextInt();
+                while (eficiencia < 1 || eficiencia > 3) {
+                    System.out.println("Ese valor de eficiencia no existe, porfavor ingresar otro[1-3]: ");
+                    eficiencia = jhin.nextInt();
+                }
+
+                pkbl.add(new Pokebola(color, serie, eficiencia));
+
             }//fin crear pokebola
 
             if (res_men == 3) {//listar pokemon
 
+                    Collections.sort(pkmn);
+                
             }//fin listar pokemon
 
             if (res_men == 4) {//eliminar pokemon
