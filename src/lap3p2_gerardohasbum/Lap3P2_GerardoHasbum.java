@@ -56,7 +56,7 @@ public class Lap3P2_GerardoHasbum {
                 }
 
                 if (existe == false) {//creacion de pokemon nuevo
-                    System.out.println("Ingrese el numero de entrada del pokemon: ");
+                    System.out.println("Ingrese el numero de entrada del pokemon: ");//indice de entrada del pokedex
                     int entrada = jhin.nextInt();
 
                     for (int i = 0; i < pkmn.size(); i++) {//validacion de indice en el pokedex
@@ -66,71 +66,141 @@ public class Lap3P2_GerardoHasbum {
                         }
                     }
 
-                    System.out.println("Ingrese la naturaleza de este pokemon[Timido,Energetico,Misterioso]: ");
+                    System.out.println("Ingrese la naturaleza de este pokemon[Timido,Energetico,Misterioso]: ");//naturaleza del pokemon
                     jhin.nextLine();
                     String naturaleza = jhin.nextLine();
                     naturaleza = naturaleza.toLowerCase();
-                    while (!(naturaleza.equals("timido")) && !(naturaleza.equals("energetico")) && !(naturaleza.equals("misterioso"))) {
+                    while (!(naturaleza.equals("timido")) && !(naturaleza.equals("energetico")) && !(naturaleza.equals("misterioso"))) {//validacion de existencia de naturaleza
                         System.out.println("Esa naturaleza no existe, porfavor ingresar otra[Timido,Energetico,Misterioso]: ");
                         naturaleza = jhin.nextLine();
                         naturaleza = naturaleza.toLowerCase();
                     }
 
-                    System.out.println("Ingrese que tipo de pokemon es: "
+                    System.out.println("Ingrese que tipo de pokemon es: "//tipo del pokemon
                             + "\n1. FUEGO"
                             + "\n2. AGUA"
                             + "\n3. PLANTA");
 
                     int tipo = jhin.nextInt();
-                    
-                    switch (tipo) {
-                        
-                        case 1:
-                            
-                            System.out.println("Ingrese la potencia de las llamas: ");
+
+                    switch (tipo) {//asignacion de cualidades por tipo
+
+                        case 1://pokemon tipo fuego
+
+                            System.out.println("Ingrese la potencia de las llamas: ");//potencia de llamas del tipo fuego
                             int potencia = jhin.nextInt();
-                            
+
                             pkmn.add(new Fire(potencia, nombre, entrada, naturaleza));
-                            
+
                             break;
-                        
-                        case 2:
-                            
-                            System.out.println("Puede vivir afuera del agua?[s/n]: ");
+
+                        case 2://pokemon tipo agua
+
+                            System.out.println("Puede vivir afuera del agua?[s/n]: ");//habilidad para vivir afuera del agua del tipo agua
                             char res = jhin.next().charAt(0);
                             boolean vive = false;
                             if (res == 's' || res == 'S') {
                                 vive = true;
                             }
-                            
-                            System.out.println("Ingrese la velocidad del pokemon en el agua: ");
+
+                            System.out.println("Ingrese la velocidad del pokemon en el agua: ");//velocidad en el agua del tipo agua
                             int velocidad = jhin.nextInt();
-                            
+
                             pkmn.add(new Water(vive, velocidad, nombre, entrada, naturaleza));
-                            
+
                             break;
-                        
-                        case 3:
-                            
-                            System.out.println("Ingrese el habitat del pokemon: ");
+
+                        case 3://pokemon tipo planta
+
+                            System.out.println("Ingrese el habitat del pokemon: ");//habitat del pokemon tipo planta
                             jhin.nextLine();
                             String habitat = jhin.nextLine();
-                            
-                            System.out.println("Ingrese el dominio sobre las plantas del pokemon[0-100]: ");
+
+                            System.out.println("Ingrese el dominio sobre las plantas del pokemon[0-100]: ");//dominio sobre las plantas del pokemon tipo planta
                             int dominio = jhin.nextInt();
-                            while (dominio < 0 || dominio > 100) {
+                            while (dominio < 0 || dominio > 100) {//validacion de dominio sobre las plantas
                                 System.out.println("Ese dominio sobre las plantas no es posible, porfavor ingresar uno posible[0-100]: ");
                                 dominio = jhin.nextInt();
                             }
+
                             pkmn.add(new Grass(habitat, dominio, nombre, entrada, naturaleza));
-                            
+
                             break;
-                        
+
                     }
                 }
-                
-                if (existe == true) {
-                    
+
+                if (existe == true) {//Creacion de pokemon existente
+                    if (temporal instanceof Fire) {//si ya existe y es fuego
+
+                        System.out.println("Ingrese la naturaleza del pokemon[Timido,Energetico,Misterioso]: ");//naturaleza del pokemon
+                        jhin.nextLine();
+                        String naturaleza = jhin.nextLine();
+                        naturaleza = naturaleza.toLowerCase();
+                        while (!(naturaleza.equals("timido")) && !(naturaleza.equals("energetico")) && !(naturaleza.equals("misterioso"))) {//validacion de existencia de la naturaleza
+                            System.out.println("Esa naturaleza no existe, porfavor ingresar otra[Timido,Energetico,Misterioso]: ");
+                            naturaleza = jhin.nextLine();
+                            naturaleza = naturaleza.toLowerCase();
+                        }
+
+                        System.out.println("Ingrese la potencia de las llamas del pokemon: ");//potencia de las llamas del pokemon tipo fuego
+                        int potencia = jhin.nextInt();
+
+                        pkmn.add(new Fire(potencia, temporal.getNombre(), temporal.getEntrada(), naturaleza));
+
+                    }
+
+                    if (temporal instanceof Water) {//si ya existe y es agua
+
+                        System.out.println("Ingrese la naturaleza de este pokemon[Timido,Energetico,Misterioso]: ");//naturaleza del pokemon
+                        String naturaleza = jhin.nextLine();
+                        naturaleza = naturaleza.toLowerCase();
+                        while (!(naturaleza.equals("timido")) && !(naturaleza.equals("energetico")) && !(naturaleza.equals("misterioso"))) {
+                            System.out.println("Esa naturaleza no existe, porfavor ingresar otra[Timido,Energetico,Misterioso]: ");
+                            naturaleza = jhin.nextLine();
+                            naturaleza = naturaleza.toLowerCase();
+                        }
+
+                        System.out.println("Puede vivir afuera del agua?[s/n]: ");//habilidad para vivir afuera del agua del tipo agua
+                        char res = jhin.next().charAt(0);
+                        boolean vive = false;
+                        if (res == 's' || res == 'S') {
+                            vive = true;
+                        }
+
+                        System.out.println("Ingrese la velocidad del pokemon en el agua: ");//velocidad en el agua del tipo agua
+                        int velocidad = jhin.nextInt();
+
+                        pkmn.add(new Water(vive, velocidad, temporal.getNombre(), temporal.getEntrada(), naturaleza));
+
+                    }
+
+                    if (temporal instanceof Grass) {//si ya existe y es planta
+
+                        System.out.println("Ingrese la naturaleza de este pokemon[Timido,Energetico,Misterioso]: ");//naturaleza del pokemon
+                        jhin.nextLine();
+                        String naturaleza = jhin.nextLine();
+                        naturaleza = naturaleza.toLowerCase();
+                        while (!(naturaleza.equals("timido")) && !(naturaleza.equals("energetico")) && !(naturaleza.equals("misterioso"))) {
+                            System.out.println("Esa naturaleza no existe, porfavor ingresar otra[Timido,Energetico,Misterioso]: ");
+                            naturaleza = jhin.nextLine();
+                            naturaleza = naturaleza.toLowerCase();
+                        }
+
+                        System.out.println("Ingrese el habitat del pokemon: ");//habitat del pokemon tipo planta
+                        jhin.nextLine();
+                        String habitat = jhin.nextLine();
+
+                        System.out.println("Ingrese el dominio sobre las plantas del pokemon[0-100]: ");//dominio sobre las plantas del pokemon tipo planta
+                        int dominio = jhin.nextInt();
+                        while (dominio < 0 || dominio > 100) {//validacion sobre el dominio de las plantas
+                            System.out.println("Ese dominio sobre las plantas no es posible, porfavor ingresar uno posible[0-100]: ");
+                            dominio = jhin.nextInt();
+                        }
+
+                        pkmn.add(new Grass(habitat, dominio, temporal.getNombre(), temporal.getEntrada(), naturaleza));
+
+                    }
                 }
 
             }//fin crear pokemon
