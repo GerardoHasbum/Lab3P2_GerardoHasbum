@@ -7,7 +7,6 @@ package lap3p2_gerardohasbum;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  *
@@ -189,7 +188,6 @@ public class Lap3P2_GerardoHasbum {
                         }
 
                         System.out.println("Ingrese el habitat del pokemon: ");//habitat del pokemon tipo planta
-                        jhin.nextLine();
                         String habitat = jhin.nextLine();
 
                         System.out.println("Ingrese el dominio sobre las plantas del pokemon[0-100]: ");//dominio sobre las plantas del pokemon tipo planta
@@ -245,8 +243,52 @@ public class Lap3P2_GerardoHasbum {
 
             if (res_men == 3) {//listar pokemon
 
-                    Collections.sort(pkmn);
+                ArrayList<Fire> fire = new ArrayList();
+                ArrayList<Water> water = new ArrayList();
+                ArrayList<Grass> grass = new ArrayList();
+
+                for (int i = 0; i < pkmn.size(); i++) {//agrupacion de tipos
+
+                    if (pkmn.get(i) instanceof Fire) {
+                        
+                        fire.add((Fire)pkmn.get(i));
+                        
+                    }
+                    
+                    if (pkmn.get(i) instanceof Water) {
+                        
+                        water.add((Water)pkmn.get(i));
+                        
+                    }
+                    
+                    if (pkmn.get(i) instanceof Grass) {
+                        
+                        grass.add((Grass)pkmn.get(i));
+                        
+                    }
+
+                }
                 
+                pkmn.clear();//limpieza
+                
+                for (int i = 0; i < fire.size(); i++) {//anidacion de tipos agrupados
+                    pkmn.add(fire.get(i));
+                }
+                
+                for (int i = 0; i < water.size(); i++) {
+                    pkmn.add(water.get(i));
+                }
+                
+                for (int i = 0; i < grass.size(); i++) {
+                    pkmn.add(grass.get(i));
+                }
+                
+                fire.clear();//limpieza de tipos para re usarlos luego
+                water.clear();
+                grass.clear();
+
+                PrintA(pkmn);//tipos ordenados impresos
+
             }//fin listar pokemon
 
             if (res_men == 4) {//eliminar pokemon
@@ -264,5 +306,15 @@ public class Lap3P2_GerardoHasbum {
         }//fin while menu
 
     }//fin main
+
+    public static void PrintA(ArrayList x) {
+
+        for (int i = 0; i < x.size(); i++) {
+
+            System.out.println(i + ".- " + x.get(i).toString());
+
+        }
+
+    }
 
 }//fin clase
