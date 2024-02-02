@@ -1,8 +1,9 @@
 package lap3p2_gerardohasbum;
-public class Water extends Pokemon{
-    
-    boolean vive;
-    int velocidad;
+
+public class Water extends Pokemon {
+
+    protected boolean vive;
+    protected int velocidad;
 
     public Water() {
     }
@@ -31,9 +32,7 @@ public class Water extends Pokemon{
 
     @Override
     public String toString() {
-        return super.toString() + "\nTipo Agua\nSobrevive afuera del agua: "+vive+"\nVelocidad al nadar: "+velocidad;
+        return super.toString() + "\nTipo Agua\nSobrevive afuera del agua: " + vive + "\nVelocidad al nadar: " + velocidad;
     }
-    
-    
-    
+
 }

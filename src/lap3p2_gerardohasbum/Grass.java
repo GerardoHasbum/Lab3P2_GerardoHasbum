@@ -1,8 +1,9 @@
 package lap3p2_gerardohasbum;
-public class Grass extends Pokemon{
-    
-    String habitat;
-    int dominio;
+
+public class Grass extends Pokemon {
+
+    protected String habitat;
+    protected int dominio;
 
     public Grass() {
     }
@@ -31,7 +32,7 @@ public class Grass extends Pokemon{
 
     @Override
     public String toString() {
-        return super.toString() + "\nTipo Planta\nHabitat: "+habitat+"\nDominio sobre las plantas: "+dominio;
-    }  
-    
+        return super.toString() + "\nTipo Planta\nHabitat: " + habitat + "\nDominio sobre las plantas: " + dominio;
+    }
+
 }

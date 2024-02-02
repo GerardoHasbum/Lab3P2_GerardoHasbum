@@ -1,11 +1,12 @@
 package lap3p2_gerardohasbum;
+
 public class Pokemon {
-    
-    String nombre;
-    int entrada;
-    String naturaleza;
-    boolean catched = false;
-    Pokebola pkblCatched;
+
+    protected String nombre;
+    protected int entrada;
+    protected String naturaleza;
+    protected boolean catched = false;
+    protected Pokebola pkblCatched;
 
     public Pokemon() {
     }
@@ -58,7 +59,7 @@ public class Pokemon {
 
     @Override
     public String toString() {
-        return entrada+". "+nombre+"\n"+"Naturaleza: " + naturaleza + "\nAtrapado: " + catched + "\nPokebola con la que se atrapo:\n" + pkblCatched;
+        return "#" + entrada + ". " + nombre + "\n" + "Naturaleza: " + naturaleza + "\nAtrapado: " + catched + "\nPokebola con la que se atrapo:\n" + pkblCatched;
     }
-    
+
 }

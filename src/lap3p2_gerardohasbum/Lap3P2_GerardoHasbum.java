@@ -24,6 +24,10 @@ public class Lap3P2_GerardoHasbum {
 
         int res_men = 1;
         ArrayList pkmn = new ArrayList();
+        //para validar ciertas cosas
+        pkmn.add(new Fire(0, "char", 3, "Timido"));
+        pkmn.add(new Water(true, 0, "squirt", 2, "Energetico"));
+        pkmn.add(new Grass("Bosque", 0, "bulb", 1, "misterioso"));
         ArrayList<Pokebola> pkbl = new ArrayList();
 
         while (res_men > 0 && res_men < 7) {//while menu
@@ -201,6 +205,9 @@ public class Lap3P2_GerardoHasbum {
 
                     }
                 }
+                
+                System.out.println("Pokemon creado");
+                System.out.println();
 
             }//fin crear pokemon
 
@@ -238,60 +245,91 @@ public class Lap3P2_GerardoHasbum {
                 }
 
                 pkbl.add(new Pokebola(color, serie, eficiencia));
+                
+                System.out.println("Pokebola creada");
+                System.out.println();
 
             }//fin crear pokebola
 
             if (res_men == 3) {//listar pokemon
 
-                ArrayList<Fire> fire = new ArrayList();
-                ArrayList<Water> water = new ArrayList();
-                ArrayList<Grass> grass = new ArrayList();
-
-                for (int i = 0; i < pkmn.size(); i++) {//agrupacion de tipos
-
-                    if (pkmn.get(i) instanceof Fire) {
-                        
-                        fire.add((Fire)pkmn.get(i));
-                        
-                    }
-                    
-                    if (pkmn.get(i) instanceof Water) {
-                        
-                        water.add((Water)pkmn.get(i));
-                        
-                    }
-                    
-                    if (pkmn.get(i) instanceof Grass) {
-                        
-                        grass.add((Grass)pkmn.get(i));
-                        
-                    }
-
-                }
-                
-                pkmn.clear();//limpieza
-                
-                for (int i = 0; i < fire.size(); i++) {//anidacion de tipos agrupados
-                    pkmn.add(fire.get(i));
-                }
-                
-                for (int i = 0; i < water.size(); i++) {
-                    pkmn.add(water.get(i));
-                }
-                
-                for (int i = 0; i < grass.size(); i++) {
-                    pkmn.add(grass.get(i));
-                }
-                
-                fire.clear();//limpieza de tipos para re usarlos luego
-                water.clear();
-                grass.clear();
-
+                pkmn = Ordenamiento(pkmn);//ordenacion
                 PrintA(pkmn);//tipos ordenados impresos
+                System.out.println();
 
             }//fin listar pokemon
 
             if (res_men == 4) {//eliminar pokemon
+
+                System.out.println("Ingrese el tipo de pokemon que desea eliminar: "//seleccion de tipo
+                        + "\n1. FUEGO"
+                        + "\n2. AGUA"
+                        + "\n3. PLANTA");
+
+                int tipo = jhin.nextInt();
+                
+                while (tipo < 1 || tipo > 3) {//validacion de tipo
+                    System.out.print("Ese tipo no existe porfavor elegir uno existente: ");
+                    tipo = jhin.nextInt();
+                }
+
+                if (tipo == 1) {//si fuego
+                    for (int i = 0; i < pkmn.size(); i++) {
+                        if (pkmn.get(i) instanceof Fire) {
+                            System.out.println(i + ".- " + pkmn.get(i).toString());
+                        }
+                    }
+                }
+                if (tipo == 2) {//si agua
+                    for (int i = 0; i < pkmn.size(); i++) {
+                        if (pkmn.get(i) instanceof Water) {
+                            System.out.println(i + ".- " + pkmn.get(i).toString());
+                        }
+                    }
+                }
+                if (tipo == 3) {//si planta
+                    for (int i = 0; i < pkmn.size(); i++) {
+                        if (pkmn.get(i) instanceof Grass) {
+                            System.out.println(i + ".- " + pkmn.get(i).toString());
+                        }
+                    }
+                }
+
+                System.out.println("Ingrese el indice(x.- ) del pokemon que desea eliminar: ");//se ponen oscuras las cosas
+
+                int elimpos = jhin.nextInt();
+                
+                if (elimpos > pkmn.size()-1) {//validacion de posicion
+                    System.out.println("Ese valor no existe en la lista");
+                    continue;
+                }
+                if (pkmn.get(elimpos) instanceof Fire) {//validacion si la posicion es del tipo eleigido
+                    if (tipo == 1) {
+                        pkmn.remove(elimpos);
+                    } else {
+                        System.out.println("fuego");
+                        System.out.println("Ese pokemon no es del tipo especificado");
+                        continue;
+                    }
+                }
+
+                else if (pkmn.get(elimpos) instanceof Water) {
+                    if (tipo == 2) {
+                        pkmn.remove(elimpos);
+                    } else {
+                        System.out.println("Ese pokemon no es del tipo especificado");
+                        continue;
+                    }
+                }
+
+                else if (pkmn.get(elimpos) instanceof Grass) {
+                    if (tipo == 3) {
+                        pkmn.remove(elimpos);
+                    } else {
+                        System.out.println("Ese pokemon no es del tipo especificado");
+                        continue;
+                    }
+                }
 
             }//fin eliminar pokemon
 
@@ -314,6 +352,51 @@ public class Lap3P2_GerardoHasbum {
             System.out.println(i + ".- " + x.get(i).toString());
 
         }
+
+    }
+
+    public static ArrayList Ordenamiento(ArrayList x) {        
+        ArrayList pkmn = new ArrayList();
+
+        ArrayList<Fire> fire = new ArrayList();
+        ArrayList<Water> water = new ArrayList();
+        ArrayList<Grass> grass = new ArrayList();
+
+        for (int i = 0; i < x.size(); i++) {//agrupacion de tipos
+
+            if (x.get(i) instanceof Fire) {
+
+                fire.add((Fire) x.get(i));
+
+            }
+
+            if (x.get(i) instanceof Water) {
+
+                water.add((Water) x.get(i));
+
+            }
+
+            if (x.get(i) instanceof Grass) {
+
+                grass.add((Grass) x.get(i));
+
+            }
+
+        }
+
+        for (int i = 0; i < fire.size(); i++) {//anidacion de tipos agrupados
+            pkmn.add(fire.get(i));
+        }
+
+        for (int i = 0; i < water.size(); i++) {
+            pkmn.add(water.get(i));
+        }
+
+        for (int i = 0; i < grass.size(); i++) {
+            pkmn.add(grass.get(i));
+        }
+
+        return pkmn;
 
     }
 

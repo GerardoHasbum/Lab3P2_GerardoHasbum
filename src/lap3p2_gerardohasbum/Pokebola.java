@@ -1,9 +1,10 @@
 package lap3p2_gerardohasbum;
+
 public class Pokebola {
-    
-    String color;
-    String serie;
-    int eficiencia;
+
+    protected String color;
+    protected String serie;
+    protected int eficiencia;
 
     public Pokebola() {
     }
@@ -42,7 +43,5 @@ public class Pokebola {
     public String toString() {
         return "   Pokebola: " + serie + "\n   Color: " + color + "\n   Eficiencia: " + eficiencia;
     }
-    
-    
-    
+
 }
