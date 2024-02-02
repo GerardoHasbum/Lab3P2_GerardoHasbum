@@ -4,18 +4,16 @@ public class Pokemon {
     String nombre;
     int entrada;
     String naturaleza;
-    boolean catched;
+    boolean catched = false;
     Pokebola pkblCatched;
 
     public Pokemon() {
     }
 
-    public Pokemon(String nombre, int entrada, String naturaleza, boolean catched, Pokebola pkblCatched) {
+    public Pokemon(String nombre, int entrada, String naturaleza) {
         this.nombre = nombre;
         this.entrada = entrada;
         this.naturaleza = naturaleza;
-        this.catched = catched;
-        this.pkblCatched = pkblCatched;
     }
 
     public String getNombre() {

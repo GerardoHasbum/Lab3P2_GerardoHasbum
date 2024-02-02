@@ -42,7 +42,7 @@ static Random crit = new Random();
             
             if (res_men == 1) {//crear pokemon
                 Pokebola pokebola = new Pokebola("Morada", "P1", 3);
-                Pokemon pika = new Pokemon("Pikachu", 15, "Timido", false, pokebola);
+                Fire pika = new Fire(5, "Charmander", 7, "Timido");
                 System.out.println(pika.toString());
                 
             }//fin crear pokemon
