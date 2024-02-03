@@ -25,14 +25,14 @@ public class Lap3P2_GerardoHasbum {
         int res_men = 1;
         ArrayList pkmn = new ArrayList();
         //para validar ciertas cosas
-        /*pkmn.add(new Fire(0, "char", 3, "Timido"));
+        pkmn.add(new Fire(0, "char", 3, "Timido"));
         pkmn.add(new Water(true, 0, "squirt", 2, "Energetico"));
-        pkmn.add(new Grass("Bosque", 0, "bulb", 1, "misterioso"));*/
+        pkmn.add(new Grass("Bosque", 0, "bulb", 1, "misterioso"));
         ArrayList<Pokebola> pkbl = new ArrayList();
         //para validar ciertas cosas
-        /*pkbl.add(new Pokebola("Negro", "Ultra3", 3));
+        pkbl.add(new Pokebola("Negro", "Ultra3", 3));
         pkbl.add(new Pokebola("Azul", "Great2", 2));
-        pkbl.add(new Pokebola("Rojo", "Basic1", 1));*/
+        pkbl.add(new Pokebola("Rojo", "Basic1", 1));
 
         while (res_men > 0 && res_men < 7) {//while menu
 
@@ -342,20 +342,61 @@ public class Lap3P2_GerardoHasbum {
                     pok = (Pokemon) pkmn.get(pospok);
                 }
                 System.out.println("EL POKEMON " + pok.getNombre() + " HA APARECIDO");
-                
-                PrintA(pkbl);
-                
-                System.out.println("Ingrese el indice(x.- ) de la pokebola que quiere usar: ");
-                int posball = jhin.nextInt();
-                
-                while (posball > pkbl.size()-1 || posball < 0) {
-                    System.out.print("Ese indice no esta en la lista porfavor ingresar uno que si este: ");
-                    posball = jhin.nextInt();
+
+                while (pok.isCatched() == false) {
+
+                    PrintA(pkbl);
+
+                    System.out.println("Ingrese el indice(x.- ) de la pokebola que quiere usar: ");
+                    int posball = jhin.nextInt();
+
+                    while (posball > pkbl.size() - 1 || posball < 0) {
+                        System.out.print("Ese indice no esta en la lista porfavor ingresar uno que si este: ");
+                        posball = jhin.nextInt();
+                    }
+
+                    Pokebola temp = pkbl.get(posball);
+                    pkbl.remove(posball);
+
+                    if (temp.getEficiencia() == 3) {
+                        System.out.println("EL POKEMON A SIDO ATRAPDO");
+                        ((Pokemon) pkmn.get(pospok)).setCatched(true);
+                        ((Pokemon) pkmn.get(pospok)).setPkblCatched(temp);
+                        pok.setCatched(true);
+                    } else if (temp.getEficiencia() == 2) {
+                        int x = 1 + crit.nextInt(3);
+                        if (x == 3 || x == 2) {
+                            System.out.println("EL POKEMON A SIDO ATRAPDO");
+                            ((Pokemon) pkmn.get(pospok)).setCatched(true);
+                            ((Pokemon) pkmn.get(pospok)).setPkblCatched(temp);
+                            pok.setCatched(true);
+                        } else {
+                            System.out.println("EL POKEMON SE HA ESCAPADO DE LA POKEBOLA");
+                        }
+                    } else if (temp.getEficiencia() == 1) {
+                        int x = 1 + crit.nextInt(3);
+                        if (x == 3) {
+                            System.out.println("EL POKEMON A SIDO ATRAPDO");
+                            ((Pokemon) pkmn.get(pospok)).setCatched(true);
+                            ((Pokemon) pkmn.get(pospok)).setPkblCatched(temp);
+                            pok.setCatched(true);
+                        } else {
+                            System.out.println("EL POKEMON SE HA ESCAPADO DE LA POKEBOLA");
+                        }
+                    }
+
                 }
 
             }//fin capturar pokemon
 
             if (res_men == 6) {//modificar pokemon
+
+                for (int i = 0; i < pkmn.size(); i++) {
+                    Pokemon temp = (Pokemon) pkmn.get(i);
+                    if (temp.isCatched()) {
+                        System.out.println(i + ".- " + temp.toString());
+                    }
+                }
 
             }//fin modificar pokemon
 
