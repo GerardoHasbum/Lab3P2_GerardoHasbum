@@ -398,6 +398,105 @@ public class Lap3P2_GerardoHasbum {
                     }
                 }
 
+                System.out.println("Eliga el indice(x.- ) del pokemon a modificar: ");
+                int pospok = jhin.nextInt();
+                Pokemon temp = (Pokemon) pkmn.get(pospok);
+                while (temp.isCatched() == false || pospok < 0 || pospok > pkmn.size() - 1) {
+                    System.out.print("Ese pokemon o no existe o no ha sido atrapado, porfavor elegir uno que existe y ha sido atrapado: ");
+                    pospok = jhin.nextInt();
+                    while (pospok < 0 || pospok > pkmn.size() - 1) {
+                        System.out.print("Esa posicion no existe porfavor eliga otra que si exista: ");
+                        pospok = jhin.nextInt();
+                    }
+                    temp = (Pokemon) pkmn.get(pospok);
+                }
+                
+                if (pkmn.get(pospok) instanceof Fire) {
+                    System.out.println("*****MODIFICAR*****"
+                            + "\n1. Nombre"
+                            + "\n2. Numero de entrada"
+                            + "\n3. Potencia de llamas"
+                            + "\n4. Cancelar");
+                    int menmod = jhin.nextInt();
+                    
+                    if (menmod == 1) {
+                        System.out.println("Ingrese el nuevo nombre: ");
+                        jhin.nextLine();
+                        String nombre = jhin.nextLine();
+                        ((Pokemon)pkmn.get(pospok)).setNombre(nombre);
+                    }
+                    
+                    if (menmod == 2) {
+                        System.out.println("Ingrese el nuevo numero de entrada: ");
+                        int entrada = jhin.nextInt();
+                        ((Pokemon)pkmn.get(pospok)).setEntrada(entrada);
+                    }
+                    
+                    if (menmod == 3) {
+                        System.out.println("Ingrese la nueva potencia de llamas: ");
+                        int potencia = jhin.nextInt();
+                        ((Fire)pkmn.get(pospok)).setPotencia(potencia);
+                    }
+                    
+                } else if (pkmn.get(pospok) instanceof Water) {
+                    System.out.println("*****MODIFICAR*****"
+                            + "\n1. Nombre"
+                            + "\n2. Numero de entrada"
+                            + "\n3. Superviviencia fuera del agua"
+                            + "\n4. Cancelar");
+                    int menmod = jhin.nextInt();
+                    
+                    if (menmod == 1) {
+                        System.out.println("Ingrese el nuevo nombre: ");
+                        jhin.nextLine();
+                        String nombre = jhin.nextLine();
+                        ((Pokemon)pkmn.get(pospok)).setNombre(nombre);
+                    }
+                    
+                    if (menmod == 2) {
+                        System.out.println("Ingrese el nuevo numero de entrada: ");
+                        int entrada = jhin.nextInt();
+                        ((Pokemon)pkmn.get(pospok)).setEntrada(entrada);
+                    }
+                    
+                    if (menmod == 3) {
+                        System.out.println("Ingrese si el pokemon puede vivir fuera del agua[s/n]: ");
+                        char resp = jhin.next().charAt(0);
+                        boolean vive = false;
+                        if (resp == 's' || resp == 'S') {
+                            vive = true;
+                        }
+                        ((Water)pkmn.get(pospok)).setVive(vive);
+                    }
+                } else if (pkmn.get(pospok) instanceof Grass) {
+                    System.out.println("*****MODIFICAR*****"
+                            + "\n1. Nombre"
+                            + "\n2. Numero de entrada"
+                            + "\n3. Habitat"
+                            + "\n4. Cancelar");
+                    int menmod = jhin.nextInt();
+                    
+                    if (menmod == 1) {
+                        System.out.println("Ingrese el nuevo nombre: ");
+                        jhin.nextLine();
+                        String nombre = jhin.nextLine();
+                        ((Pokemon)pkmn.get(pospok)).setNombre(nombre);
+                    }
+                    
+                    if (menmod == 2) {
+                        System.out.println("Ingrese el nuevo numero de entrada: ");
+                        int entrada = jhin.nextInt();
+                        ((Pokemon)pkmn.get(pospok)).setEntrada(entrada);
+                    }
+                    
+                    if (menmod == 3) {
+                        System.out.println("Ingrese el nuevo habitat: ");
+                        jhin.nextLine();
+                        String habitat = jhin.nextLine();
+                        ((Grass)pkmn.get(pospok)).setHabitat(habitat);
+                    }
+                }
+
             }//fin modificar pokemon
 
         }//fin while menu
