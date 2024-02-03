@@ -25,10 +25,14 @@ public class Lap3P2_GerardoHasbum {
         int res_men = 1;
         ArrayList pkmn = new ArrayList();
         //para validar ciertas cosas
-        pkmn.add(new Fire(0, "char", 3, "Timido"));
+        /*pkmn.add(new Fire(0, "char", 3, "Timido"));
         pkmn.add(new Water(true, 0, "squirt", 2, "Energetico"));
-        pkmn.add(new Grass("Bosque", 0, "bulb", 1, "misterioso"));
+        pkmn.add(new Grass("Bosque", 0, "bulb", 1, "misterioso"));*/
         ArrayList<Pokebola> pkbl = new ArrayList();
+        //para validar ciertas cosas
+        /*pkbl.add(new Pokebola("Negro", "Ultra3", 3));
+        pkbl.add(new Pokebola("Azul", "Great2", 2));
+        pkbl.add(new Pokebola("Rojo", "Basic1", 1));*/
 
         while (res_men > 0 && res_men < 7) {//while menu
 
@@ -205,7 +209,7 @@ public class Lap3P2_GerardoHasbum {
 
                     }
                 }
-                
+
                 System.out.println("Pokemon creado");
                 System.out.println();
 
@@ -245,7 +249,7 @@ public class Lap3P2_GerardoHasbum {
                 }
 
                 pkbl.add(new Pokebola(color, serie, eficiencia));
-                
+
                 System.out.println("Pokebola creada");
                 System.out.println();
 
@@ -267,7 +271,7 @@ public class Lap3P2_GerardoHasbum {
                         + "\n3. PLANTA");
 
                 int tipo = jhin.nextInt();
-                
+
                 while (tipo < 1 || tipo > 3) {//validacion de tipo
                     System.out.print("Ese tipo no existe porfavor elegir uno existente: ");
                     tipo = jhin.nextInt();
@@ -298,8 +302,8 @@ public class Lap3P2_GerardoHasbum {
                 System.out.println("Ingrese el indice(x.- ) del pokemon que desea eliminar: ");//se ponen oscuras las cosas
 
                 int elimpos = jhin.nextInt();
-                
-                if (elimpos > pkmn.size()-1) {//validacion de posicion
+
+                if (elimpos > pkmn.size() - 1 || elimpos < 0) {//validacion de posicion
                     System.out.println("Ese valor no existe en la lista");
                     continue;
                 }
@@ -311,18 +315,14 @@ public class Lap3P2_GerardoHasbum {
                         System.out.println("Ese pokemon no es del tipo especificado");
                         continue;
                     }
-                }
-
-                else if (pkmn.get(elimpos) instanceof Water) {
+                } else if (pkmn.get(elimpos) instanceof Water) {
                     if (tipo == 2) {
                         pkmn.remove(elimpos);
                     } else {
                         System.out.println("Ese pokemon no es del tipo especificado");
                         continue;
                     }
-                }
-
-                else if (pkmn.get(elimpos) instanceof Grass) {
+                } else if (pkmn.get(elimpos) instanceof Grass) {
                     if (tipo == 3) {
                         pkmn.remove(elimpos);
                     } else {
@@ -334,6 +334,24 @@ public class Lap3P2_GerardoHasbum {
             }//fin eliminar pokemon
 
             if (res_men == 5) {//capturar pokemon
+
+                int pospok = crit.nextInt(pkmn.size());
+                Pokemon pok = (Pokemon) pkmn.get(pospok);
+                while (pok.isCatched() == true) {
+                    pospok = crit.nextInt(pkmn.size());
+                    pok = (Pokemon) pkmn.get(pospok);
+                }
+                System.out.println("EL POKEMON " + pok.getNombre() + " HA APARECIDO");
+                
+                PrintA(pkbl);
+                
+                System.out.println("Ingrese el indice(x.- ) de la pokebola que quiere usar: ");
+                int posball = jhin.nextInt();
+                
+                while (posball > pkbl.size()-1 || posball < 0) {
+                    System.out.print("Ese indice no esta en la lista porfavor ingresar uno que si este: ");
+                    posball = jhin.nextInt();
+                }
 
             }//fin capturar pokemon
 
@@ -355,7 +373,7 @@ public class Lap3P2_GerardoHasbum {
 
     }
 
-    public static ArrayList Ordenamiento(ArrayList x) {        
+    public static ArrayList Ordenamiento(ArrayList x) {
         ArrayList pkmn = new ArrayList();
 
         ArrayList<Fire> fire = new ArrayList();
